@@ -10,5 +10,5 @@ func DefaultCacheDir() string {
 	if err != nil {
 		tmpDir = os.TempDir()
 	}
-	return filepath.Join(tmpDir, "trivy")
+	return filepath.Join(tmpDir, "findv")
 }

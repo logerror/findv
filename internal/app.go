@@ -3,6 +3,8 @@ package internal
 import (
 	"e.welights.net/devsecops/findv/internal/artifacts"
 	"e.welights.net/devsecops/findv/pkg/utils"
+	"e.welights.net/devsecops/findv/pkg/utils/i18n"
+	"fmt"
 	"github.com/urfave/cli/v2"
 	"io"
 	"time"
@@ -72,7 +74,7 @@ func NewApplication(version string) *cli.App {
 	app.Name = "findv"
 	app.Version = version
 	app.ArgsUsage = "target"
-	app.Usage = "A simple and comprehensive vulnerability scanner for containers"
+	app.Usage = i18n.Sprintf("findv_description")
 	app.EnableBashCompletion = true
 
 	flags := append(globalFlags, setHidden(deprecatedFlags, true)...)
@@ -87,7 +89,8 @@ func NewApplication(version string) *cli.App {
 }
 
 func showVersion(version string, outputWriter io.Writer) {
-
+	output := fmt.Sprintf("Version: %s\n", version)
+	fmt.Fprintf(outputWriter, output)
 }
 
 func setHidden(flags []cli.Flag, hidden bool) []cli.Flag {
